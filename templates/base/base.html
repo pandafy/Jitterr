@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fritter</title>
+  <link rel="stylesheet" href="{% static 'index.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <div id="app-container">
+
+
+
+{% block content %}
+
+{% endblock %}
+  </div>
+
+  <style>body{--primary-btn-hover: hsla(209, 100%, 42%, 1)}</style>
+  <style>body{--theme-color: hsla(209, 100%, 48%, 1)}</style><style>body{--theme-color-faded: hsla(209, 100%, 97%, 1)}</style>
+  <style>body{--theme-color-box-shadow: hsla(209, 100%, 85%, 1)}</style>
+  <style>body{--theme-color-border: hsla(209, 100%, 75%, 1)}</style>
+  <style>body{--theme-color-hover: hsla(209, 100%, 99%, 1)}</style>
+</body>
+
+<script src = "{% static 'js/index.js'%}"></script>
+<script src = "{% static 'js/home.js' %}"></script>
+{% include 'base/partials/_footer.html' %}
+
+</html>
+
+
+
+
+        
+
+

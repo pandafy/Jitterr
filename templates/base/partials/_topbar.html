@@ -1,0 +1,62 @@
+{% load static %}
+<header>
+    <nav>
+        <a href="{% url 'feed' %}" class="nav-item active">
+            <span class="icon"><svg width="12" height="12" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#home-icon-svg"></use></svg></span>
+            <span class="label">Home</span>
+        </a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'notifications' %}" class="nav-item ">
+            <span class="icon settings"><svg width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#error-icon-svg"></use></svg></span>
+            <span class="label">Notifications</span>
+            
+        </a>
+
+        <a href="{% url 'settings' %}" class="nav-item ">
+            <span class="icon settings"><svg width="48" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#settings-icon-svg"></use></svg></span>
+            <span class="label">Settings</span>
+        </a>
+    {% endif%}
+            <span class="nav-item profile">
+            <span class="label name">
+             {% if request.user.is_authenticated  %}
+                {{ user.username }}
+             {% else %}
+        
+             <span class="nav-item new-post">
+                    <a href="{% url 'signup' %}" class="btn primary">Signup</a>
+                </span>
+             {% endif %}
+            </span>
+
+            
+            <a href="{% url 'feed' %}" class="avatar-container small">
+                <img src="{{ users.avatar.url }}" class="avatar small">
+            </a>
+           
+            </span>
+        
+      
+        <span class="nav-item new-post">
+          {% if user.is_authenticated  %}
+            <a href="/" class="btn primary">New post</a>
+        
+          {% else %}
+            <a href="{% url 'signin' %}" class="btn primary">Login</a>
+          {% endif %}
+        </span>
+
+        {% if user.is_authenticated  %}
+          <span class="nav-item new-post">
+                
+                <form action = "{% url 'signout' %}" method="POST" id="logout">
+                    {% csrf_token %}
+                    <a href="javascript:{document.getElementById('logout').submit()}" class="btn primary" style="margin-top: 14px;"" >Logout</a>
+                </form>
+
+          </span>
+        {% endif %}
+        
+    </nav>
+</header>

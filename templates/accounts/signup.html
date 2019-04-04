@@ -1,0 +1,147 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div id="app-container">
+      
+
+      <main>
+        <div class="view feed">
+      <div class="sidebar-col">
+        
+        <div class="module">
+          <strong>Fritter build 2018.06.14</strong>
+        </div>
+        
+      </div>
+
+      <div class="main-col">
+        {% include 'base/partials/_alerts.html' %}
+        <div class="settings-view">
+          <div>
+      <h2>Create profile</h2>
+
+      <form class="edit-profile" method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="avatar">Avatar</label>
+        <div title="Update your avatar" class="avatar-container">
+          <input name="avatar" type="file" accept="image/*" class="avatar-input">
+
+          <span class="avatar editor empty">+</span>
+          <img src="" id="profile-img-tag" width="200px" />
+
+        </div>
+
+        <label for="name">Name</label>
+        <input autofocus="autofocus" type="text" name="name" placeholder="Name" value="">
+        
+        <label for="username">Username</label>
+        <input  type="text" name="username" placeholder="Username" value="">
+
+        <label for="password1">Password</label>
+        <input  type="password" name="password1" placeholder="Enter password" value="">
+
+        <label for="password2">Confirm Password</label>
+        <input  type="password" name="password2" placeholder="Enter password again" value="">
+        
+        <label for="bio">Bio (optional)</label>
+        <textarea name="bio" placeholder="Enter a short bio"></textarea>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Create profile</button>
+        </div>
+      </form>
+    </div>
+        </div>
+<!---->
+        <div class="settings-view">
+          <div>
+      <h2>Use existing profile</h2>
+
+      <form id="import-profile">
+        <button type="button" class="btn">Select profile from Library</button>
+
+        <p>
+          <input name="profileUrl" type="text" placeholder="Paste profile URL">
+        </p>
+
+        <button id="import-profile-btn" type="submit" disabled="disabled" class="btn primary">
+          Go to feed
+        </button>
+      </form>
+    </div>
+        </div>
+
+        <div class="settings-view">
+          <div>
+      <h2>Theme color</h2>
+
+      <form id="pick-theme-color">
+        <input name="theme-color" type="color" value="#1992FB">
+        <code class="theme-color-label">#1992FB</code>
+      </form>
+    </div>
+        </div>
+
+        <div class="settings-view">
+          <div id="image-settings" class="image-settings-wrap">
+      <h2>Image settings</h2>
+
+      <p>Embedding images creates a more seamless timeline, but enables <a href="https://github.com/beakerbrowser/fritter/issues/10">pixel-tracking</a>. Choose the setting that works best for you:</p>
+
+      <form class="image-settings">
+
+        <div class="input-wrap">
+          <input type="radio" id="choice-all" name="embedImages" value="all">
+          <label for="choice-all">Embed all images</label>
+        </div>
+
+        <div class="input-wrap">
+          <input type="radio" id="choice-dat" name="embedImages" value="dat">
+          <label for="choice-dat">Embed images from <code>dat://</code> sources</label>
+        </div>
+
+        <div class="input-wrap">
+          <input type="radio" id="choice-dat-followed" name="embedImages" value="dat-followed">
+          <label for="choice-dat-followed">Embed images from <code>dat://</code> sources I follow</label>
+        </div>
+
+        <div class="input-wrap">
+          <input checked="checked" type="radio" id="choice-none" name="embedImages" value="none">
+          <label for="choice-none">Don't embed images</label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Save</button>
+        </div>
+      </form>
+    </div>
+        </div>
+
+        <div class="settings-view">
+          <div>
+      <h2>Advanced</h2>
+
+      <p>
+        <button class="btn">Rebuild database</button>
+      </p>
+    -->
+    </div>
+        </div>
+      </div>
+    </div>
+      </main>
+
+      <style>body{--theme-color: hsla(208, 97%, 54%, 1)}</style>
+      <style>body{--primary-btn-hover: hsla(208, 97%, 48%, 1)}</style>
+      <style>body{--theme-color-faded: hsla(208, 97%, 97%, 1)}</style>
+      <style>body{--theme-color-box-shadow: hsla(208, 97%, 85%, 1)}</style>
+      <style>body{--theme-color-border: hsla(208, 97%, 75%, 1)}</style>
+      <style>body{--theme-color-hover: hsla(208, 97%, 99%, 1)}</style>
+      <input id="profile-url" type="text" value="">
+    </div>
+  <script src="{% static 'js/login.js' %}"></script>
+  
+
+{% endblock %}

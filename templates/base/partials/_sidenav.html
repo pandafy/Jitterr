@@ -1,0 +1,52 @@
+{%load static%}
+
+<div class="sidebar-col">
+    <div class="profile-card module">
+  <div class="profile-card-header">
+    <a href="{% url 'profile' user.id %}" class="avatar-container ">
+  <img src="{{ user.avatar.url}}" class="avatar ">
+</a>
+
+    <div class="name">
+      <a href="{% url 'profile' user.id %}" class="name">
+  {{user.first_name}} {{user.flast_name}}
+</a>
+    </div>
+
+    <a href="{% url 'settings'%}" class="btn edit-profile-btn">Edit profile</a>
+  </div>
+
+  
+</div>
+    
+    <div id="indexing-statuses" class="module">
+  <div class="indexing-statuses-summary">
+    <div><svg class="spinner" width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#spinner-icon-svg"></use></svg></div>
+    <div><span>1</span> feeds synced</div>
+    <div><span>1</span> loading</div>
+    
+    
+  </div>
+  
+</div>
+<!--
+          <div class="who-to-follow module">
+        <h2>Who to follow</h2>
+
+        <div class="who-to-follow-list">
+          <div class="profile">
+        <a href="/user/dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d" class="avatar-container small">
+        <img src="dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d/avatar.png" class="avatar small">
+      </a>
+        <a href="/user/dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d" class="name">
+        Tara Vancil
+      </a>
+        <button class="follow-btn btn ">
+        Follow
+      </button>
+      </div>
+        </div>
+      </div>
+    -->
+    
+  </div>

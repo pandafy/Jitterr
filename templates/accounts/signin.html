@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{%load static %}
+
+{% block content %}
+
+<main>
+    <div class="main-col">
+        {% include 'base/partials/_alerts.html' %}
+            <div class="settings-view">
+                <div>
+                    <h2>Create profile</h2>
+
+                    <form class="edit-profile" method="POST" action="{% url 'signin' %}">
+                        {% csrf_token %}
+                        <label for="username">Username</label>
+                        <input  type="text" name="username" placeholder="Username" value="">
+
+                        <label for="password">Password</label>
+                        <input  type="password" name="password" placeholder="Enter password" value="">
+                        <input type="submit" >
+                        <div class="actions">
+                                <button type="submit" class="btn primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</main>
+
+{% endblock %}

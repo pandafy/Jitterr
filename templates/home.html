@@ -1,0 +1,217 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+{% include 'base/partials/_topbar.html' %}
+<main>
+    {% if user.is_authenticated %}
+        <div class="view feed">
+      <div class="sidebar-col">
+        <div class="profile-card module">
+      <div class="profile-card-header">
+        <a href="{% url 'feed' %}" class="avatar-container ">
+      <img src="{{ user.avatar.url}}" class="avatar ">
+    </a>
+
+        <div class="name">
+          <a href="{% url 'feed' %}" class="name">
+      {{user.first_name}} {{user.flast_name}}
+    </a>
+        </div>
+
+        <a href="{% url 'settings'%}" class="btn edit-profile-btn">Edit profile</a>
+      </div>
+
+      
+    </div>
+        
+        <div id="indexing-statuses" class="module">
+      <div class="indexing-statuses-summary">
+        <div><svg class="spinner" width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#spinner-icon-svg"></use></svg></div>
+        <div><span>1</span> feeds synced</div>
+        <div><span>1</span> loading</div>
+        
+        
+      </div>
+      
+    </div>
+        <div class="who-to-follow module">
+      <h2>Who to follow</h2>
+
+      <div class="who-to-follow-list">
+        <div class="profile">
+      <a href="/user/dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d" class="avatar-container small">
+      <img src="dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d/avatar.png" class="avatar small">
+    </a>
+      <a href="/user/dat://6348fac3c70e916885ead7dce6927f01e02c0efd1a9273849891c23b7e7bac4d" class="name">
+      Tara Vancil
+    </a>
+      <button class="follow-btn btn ">
+      Follow
+    </button>
+    </div>
+      </div>
+    </div>
+        
+        
+      </div>
+
+      <div class="main-col">
+        {% include 'base/partials/_alerts.html' %}
+
+        <div class="view-content">
+            <form class="new-post-form " method = "POST" action = "{% url 'new_post' %}">
+              {% csrf_token %}
+                <div class="inputs">
+                    <a href="{% url 'profile'}" class="avatar-container small">
+                    <img src="{{ user.avatar.url }}" class="avatar small">
+                    </a>
+
+                    <textarea name ="value" placeholder="Write a post" style="border-color: hsla(208, 97%, 75%, 1); height: 35px;"></textarea>
+                    <input type="hidden" name="user_id" value="{{ request.user.id }}">{{ request.user.id }}
+                    
+                </div>
+
+                <div class="actions editing">
+                    
+                    <span class="char-count"></span>
+                    <button type = "submit" class = "btn new-post"> Submit Post </button>
+                    
+                </div>
+             </form>
+        </div>
+
+        <div class="feed">
+      
+      {% for jit in jits %}
+          <div class="feed-item post">
+          <a href="{% url 'profile' user.id %}" class="avatar-container ">
+          <img src="{{ jit.author.photo.url }}" class="avatar ">
+        </a>
+          <div class="post-content">
+            <div class="post-header">
+              <div>
+                <a href="" class="name">
+          {{jit.author.first_name}} {{ jit.author.last_name }}
+        </a>
+                <span class="timestamp">
+                  <span class="bullet">•</span>
+                  <a href="{% url 'jit' jit.id %}" class="value">{{ jit.date }} | timesince</a>
+                </span>
+              </div>
+
+              
+            </div>
+
+            <p class="text">
+              {{ jit.value }}
+            </p>
+          </div>
+
+          <div class="post-actions">
+            <div class="action reply">
+                <span class="replies-icon">
+                        <a href="{% url 'jit' jit.id %}" ><svg class="icon replies" width="96px" height="94px" viewBox="0 0 96 94" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <use xlink:href="#replies-icon-svg">
+                                    <g id="replies-icon-svg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                                            <g transform="translate(4.000000, 4.000000)" stroke="#979797" stroke-width="7">
+                                              <path d="M73.9714902,62.1501078 C68.9437192,66.393958 63.0613702,70.7444284 56.3244431,75.2015191 C50.5158149,79.0444555 44.5333569,82.6613525 38.3770688,86.0522103 L38.3770644,86.0522022 C37.4095528,86.5851036 36.1932278,86.2327824 35.6603264,85.2652708 C35.4975378,84.969719 35.4121704,84.6377856 35.4121704,84.3003675 L35.4121704,67.0725708 M33.2806682,65.9327785 L30.893617,65.9327785 C13.8315435,65.9327785 0,52.0166264 0,34.8501829 L0,31.0825956 C0,13.9161521 13.8315435,0 30.893617,0 L57.106383,0 C74.1684565,0 88,13.9161521 88,31.0825956 L88,34.8501829 C88,45.5557792 82.6206263,54.9972699 74.4330975,60.587708"></path>
+                                            </g>
+                                          </g>
+                            </use>
+                        </svg>
+                        </a>
+                </span>
+        
+                
+            </div>
+        
+            <div class="action vote ">
+                <span class="vote-icon ">
+                        <span class="vote-icon ">
+                                <svg class="icon heart" width="98px" height="93px" viewBox="0 0 98 93" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#heart-icon-svg">
+                                        <g id="heart-icon-svg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <path d="M49.099828,25.5084399 L49.099828,23.8342902 C48.4854319,23.2735688 48.2017912,21.4038604 47.1217272,19.1419074 C46.0588962,16.9160452 44.198667,14.2976502 43.697899,13.7278449 C39.998845,9.51882837 39.2075186,8.89130312 35.0784548,6.79295614 C29.8223643,4.12186603 18.989494,3.16109984 13.8026656,6.79295614 C2.71873866,14.5540053 -0.769100247,38.2557553 13.8026656,59.0663936 C25.6519819,75.9889711 38.61139,88.7368775 49.0000791,88.736431 C59.38861,88.7368775 72.3480181,75.9889711 84.1973344,59.0663936 C98.7691002,38.2557553 95.2812613,14.5540053 84.1973344,6.79295614 C79.010506,3.16109984 68.1776357,4.12186603 62.9215452,6.79295614 C58.7924814,8.89130312 58.001155,9.51882837 54.302101,13.7278449 C53.801333,14.2976502 51.9411038,16.9160452 50.8782728,19.1419074 C50.0830762,20.8072692 49.4186245,23.4168863 49.099828,25.5084399 Z" stroke-width="7"></path>
+                                              </g>
+                                    </use>
+                                </svg>
+
+                </span>
+        
+                <span class="count">
+                
+                </span>
+            </div>
+            </div>
+    </div>
+    {% endfor %}
+    <div class="feed-item post">
+      <a href="/user/dat://79cf659a6fa412e4003f15557be6e05d2f832c29c0c41566aeef22557c6c6519" class="avatar-container ">
+      <img src="dat://79cf659a6fa412e4003f15557be6e05d2f832c29c0c41566aeef22557c6c6519/avatar.png" class="avatar ">
+    </a>
+      <div class="post-content">
+        <div class="post-header">
+          <div>
+            <a href="/user/dat://79cf659a6fa412e4003f15557be6e05d2f832c29c0c41566aeef22557c6c6519" class="name">
+      Jake Thompson
+    </a>
+            <span class="timestamp">
+              <span class="bullet">•</span>
+              <a href="/thread/dat://79cf659a6fa412e4003f15557be6e05d2f832c29c0c41566aeef22557c6c6519/posts/0jtviaekp.json" class="value">3m ago</a>
+            </span>
+          </div>
+
+          
+        </div>
+
+        <p class="text">
+          my first freet
+        </p>
+      </div>
+
+      <div class="post-actions">
+      <div class="action reply">
+        <span class="replies-icon">
+          <svg class="icon replies" width="96px" height="94px" viewBox="0 0 96 94" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#replies-icon-svg"></use></svg>
+        </span>
+
+        
+      </div>
+
+      <div class="action vote ">
+        <span class="vote-icon ">
+          <svg class="icon heart" width="98px" height="93px" viewBox="0 0 98 93" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#heart-icon-svg"></use></svg>
+        </span>
+
+        <span class="count">
+          
+        </span>
+      </div>
+    </div>
+    </div>
+      <button class="show-posts-btn load-more">
+            Load more posts
+          </button>
+    </div>
+      </div>
+      {% else %}
+      <p>Login to view your jitters</p>
+      {% endif %}
+
+    </div>
+      </main>
+
+      <style>body{--theme-color: hsla(208, 97%, 54%, 1)}</style>
+      <style>body{--primary-btn-hover: hsla(208, 97%, 48%, 1)}</style>
+      <style>body{--theme-color-faded: hsla(208, 97%, 97%, 1)}</style>
+      <style>body{--theme-color-box-shadow: hsla(208, 97%, 85%, 1)}</style>
+      <style>body{--theme-color-border: hsla(208, 97%, 75%, 1)}</style>
+      <style>body{--theme-color-hover: hsla(208, 97%, 99%, 1)}</style>
+      <input id="profile-url" type="text" value="dat://79cf659a6fa412e4003f15557be6e05d2f832c29c0c41566aeef22557c6c6519">
+    </div>
+    
+
+{% endblock %}
+
+
