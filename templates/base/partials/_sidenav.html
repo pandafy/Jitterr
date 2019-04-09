@@ -3,27 +3,37 @@
 <div class="sidebar-col">
     <div class="profile-card module">
   <div class="profile-card-header">
-    <a href="{% url 'profile' user.id %}" class="avatar-container ">
-  <img src="{{ user.avatar.url}}" class="avatar ">
-</a>
-
+    <a href="{% url 'profile' profile.id %}" class="avatar-container ">
+      <img src="{{ profile.avatar.url}}" class="avatar ">
+    </a>
+    
     <div class="name">
-      <a href="{% url 'profile' user.id %}" class="name">
-  {{user.first_name}} {{user.flast_name}}
-</a>
+      <a href="{% url 'profile' profile.id %}" class="name">
+  
+      {{profile.first_name}} {{profile.last_name}}</a>
     </div>
-
+    {% if profile.id == request.user.id %}
     <a href="{% url 'settings'%}" class="btn edit-profile-btn">Edit profile</a>
+    {% else %}
+    <a href="{% url 'settings'%}" class="btn follow-btn">Follow</a>
+    {% endif %}
   </div>
-
+  <div class="bio"> {{ profile.bio }} </div>
   
 </div>
     
     <div id="indexing-statuses" class="module">
   <div class="indexing-statuses-summary">
     <div><svg class="spinner" width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#spinner-icon-svg"></use></svg></div>
-    <div><span>1</span> feeds synced</div>
-    <div><span>1</span> loading</div>
+    <div>
+      <form>
+        <div class="ui-widget">
+        <input id="search" class="ui-widget-content search-bar" type="text" name="search-user" placeholder="Search users"><i class="fa fa-search"></i>
+        
+        </div>
+        <div id="results"></div>
+      </form>
+    </div>
     
     
   </div>

@@ -1,16 +1,20 @@
 $(document).ready(function(){
-    $('textarea').click(function(){
-        $('button.btn.new-post.submit').disabled()
-    });
+    
 
 
-    $('textarea').on('change',function(){
+    $('textarea').keypress(function(){
         if ($('textarea').val() != '')
-         $('div.actions').addClass('editing');
-        else   
+         {
+             $('div.actions').addClass('editing');
+             $('follow-btn').prop('disabled','false')
+         }
+        else
+        {   
         $('div.actions').removeClass('editing');
-
-        $('.char-count').html($('textarea').val().length)
+            
+        }
+        $(this).parent('div.inputs').parent().children().children('span.char-count').html($('textarea').val().length)
     });
+  
         $('div.actions').addClass('editing');
 });

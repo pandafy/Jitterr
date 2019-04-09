@@ -8,7 +8,7 @@ class Jit(models.Model):
     author = models.ForeignKey(FrontendUsers, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now() )
     is_reply = models.BooleanField(default=False)
-
+    likes = models.IntegerField(blank=False,default=0)
 
     def __str__(self):
         return self.value
@@ -20,4 +20,6 @@ class Jit_Likedby(models.Model):
 class Jit_Comment(models.Model):
     parent_id = models.ForeignKey(Jit,blank = False, on_delete = models.CASCADE)
     comment_id = models.ForeignKey(Jit,blank = False, on_delete = models.CASCADE, related_name='comment')
+
+
     

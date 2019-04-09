@@ -1,5 +1,20 @@
 $(document).ready(function(){
     
+    var fakedata = ['test1','test2','test3','mohit','ietsanders'];
+
+    $(".search-bar").autocomplete({
+        appendTo: "#results",
+        source : fakedata,
+	
+    });
+
+    $(".search-bar").change(function(){
+        if($(this).val().length != 0)
+            $('.fa.fa-search').hide()
+        else    
+        $('.fa.fa-search').show()
+    })
+
     //text area
     $("textarea").focusin(function(){
         $(this).css("height", "47px");

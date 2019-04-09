@@ -1,5 +1,25 @@
-.hide{
+.search-bar{
+  border-radius: 40px;
+  width: 136%;
+  border-color: var(--theme-color-border);
+  color: var(--theme-color);
+  text-indent: 20px;
+}
+
+.fa-search{
+  float: right;
+    position: relative;
+    bottom: 21px;
+    right: -57px;
+    color: var(--theme-color)
+}
+
+.fa-search:after{
   display: none;
+}
+
+.hide{
+  display: none !important;
 }
 
 :root{
