@@ -5,7 +5,11 @@
 {% block content %}
 
 <main>
-    <div class="main-col">
+    <div class="main-col" style="
+        width: 59%;
+        left: 25% !important;
+        position: relative;
+        ">
         {% include 'base/partials/_alerts.html' %}
             <div class="settings-view">
                 <div>
@@ -18,13 +22,16 @@
 
                         <label for="password">Password</label>
                         <input  type="password" name="password" placeholder="Enter password" value="">
-                        <input type="submit" >
                         <div class="actions">
                                 <button type="submit" class="btn primary">Login</button>
                         </div>
+                        <div class="edit-profile">
+                            Not registered?<a href="{% url 'signup' %}"> Signup Here.</a>
+                        </div>
                     </form>
                 </div>
-            </div>
+           
+            </div>    
     </div>
 </main>
 

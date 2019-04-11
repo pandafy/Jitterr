@@ -9,7 +9,7 @@ class users(User):
 class FrontendUsers(users):
     users.username = models.TextField(max_length=30,null=False,primary_key=True)
     bio = models.TextField(max_length=200,blank=True)
-    avatar = models.ImageField(upload_to = 'users/profile/%Y/%m/%d/')
+    avatar = models.ImageField(upload_to = 'media/media')
 
 class Followers(models.Model):
     follower = models.ForeignKey(FrontendUsers,on_delete=models.CASCADE,related_name='follower')

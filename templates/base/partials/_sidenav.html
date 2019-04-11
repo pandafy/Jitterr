@@ -15,7 +15,14 @@
     {% if profile.id == request.user.id %}
     <a href="{% url 'settings'%}" class="btn edit-profile-btn">Edit profile</a>
     {% else %}
-    <a href="{% url 'settings'%}" class="btn follow-btn">Follow</a>
+    <a id="follow-btn" value="{{profile.id}}" class="btn follow-btn">
+      
+      {%if is_followed == "True" %}
+        Following
+      {% else %}
+        Follow
+      {% endif %}
+    </a>
     {% endif %}
   </div>
   <div class="bio"> {{ profile.bio }} </div>

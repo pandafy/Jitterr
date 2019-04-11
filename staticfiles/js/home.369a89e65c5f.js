@@ -16,8 +16,7 @@ function check_if_liked(){
                 if(liked['liked'] == 'True')
                 {
                     console.log('sdfdhkjhkjhss')
-                    element.addClass('voted');
-                    element.children('span.vote-icon').children('span.vote-icon').addClass('voted')
+                    $('div[id="]'+jitid+'"').addClass('voted');
                     element.children('span.vote-icon').addClass('voted');
                 }
                 console.log('post')

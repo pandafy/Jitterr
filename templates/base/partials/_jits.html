@@ -1,18 +1,20 @@
+{% load humanize %}
+
 <div class="feed-item post">
         <a href="{% url 'profile' user.id %}" class="avatar-container ">
-        <img src="{{ jit.author.photo.url }}" class="avatar ">
+        <img src="{{ jit.author.avatar.url }}" class="avatar ">
         <input type="hidden" value="{{ jit.id }}" name="jit_id_js">
 
       </a>
         <div class="post-content">
           <div class="post-header">
             <div>
-              <a href="" class="name">
+              <a href="{% url 'profile' jit.author.id %}" class="name">
         {{jit.author.first_name}} {{ jit.author.last_name }}
       </a>
               <span class="timestamp">
                 <span class="bullet">•</span>
-                <a href="{% url 'jit' jit.id %}" class="value">{{ jit.date }} | timesince</a>
+                <a href="{% url 'jit' jit.id %}" class="value">{{ jit.date  | timesince}}</a>
               </span>
             </div>
 

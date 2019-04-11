@@ -9,7 +9,8 @@ urlpatterns = [
 
 	path('user/<int:user_id>',views.profile, name = 'profile'),
 	path('check_like',views.check, name = "check"),
-	path('search/user/result',views.search_user,name = "search_user")
+	path('search/user/result',views.search_user,name = "search_user"),
+	path('follow',views.follow,name = 'follow')
 
 	#path('',views.signin,name = 'signin')
 
