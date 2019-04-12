@@ -136,8 +136,8 @@ MESSAGE_TAGS = {
 
 #Media settings
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'users')
 
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
