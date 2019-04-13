@@ -33,10 +33,10 @@
   <div class="indexing-statuses-summary">
     <div><svg class="spinner" width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#spinner-icon-svg"></use></svg></div>
     <div>
-      <form>
+      <form action = "{% url 'searchPage' %}" method="GET">
         <div class="ui-widget">
         <input id="search" class="ui-widget-content search-bar" type="text" name="search-user" placeholder="Search users"><i class="fa fa-search"></i>
-        
+        <input id="search-id" type="hidden">
         </div>
         <div id="results"></div>
       </form>
@@ -67,3 +67,5 @@
     -->
     
   </div>
+  <script src="{% static 'js/search.js' %}"></script>
+  <style>.ui-menu .ui-menu-item{ height:40px }</style>

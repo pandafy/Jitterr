@@ -11,16 +11,15 @@
 
         <div class="main-col">
                 <div class="thread">
-                    {% if focus.is_reply %}
                         <div class="parents">
                             <div class="reply feed-item post ">
                         <a href="" class="avatar-container ">
-                        <img src="{{ parent.parent_id.author_id.avatar.url }}" class="avatar ">
+                        <img src="{{ parent.parent_id.author.avatar.url }}" class="avatar ">
                       </a>
                         <div class="post-content">
                           <div class="post-header">
                             <a href="" class="name">
-                        {{parent.parent_id.author.first_name}} {{parent.parent_id.author.last_name}}
+                        {{parent.author.first_name}} {{parent.parent_id.author.last_name}}
                       </a>
                             <span class="timestamp">
                               <span class="bullet">•</span>
@@ -130,8 +129,7 @@
                         </div>
                             </div>
                     {% endfor %}
-                        {% endif %}
-                  
+                    {% if focus%}
                         <div class="main-post">
                           <div class="post-header">
                             <a href="" class="avatar-container ">
@@ -182,6 +180,7 @@
                         </div>
                       </div>
                         </div>
+                    {% endif %}
                   
                         <form class="new-post-form " method = "POST" action = "{% url 'new_post1' %}">
                           {%csrf_token%}
@@ -201,7 +200,7 @@
                         
                         <div class="actions ">
                           <span class="char-count"></span>
-                          <button type="submit" class="btn new-post submit" disabled="true">Submit post</button>
+                          <button type="submit" class="btn new-post submit" >Submit post</button>
                           
                         </div>
                       </form>

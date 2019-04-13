@@ -59,10 +59,17 @@ def follow(request):
 
 
 def notifications(request):
-    return redirect('accounts/signin')
+    context = {
+        'profile' :getLoggecUser(request.user.id)
+    }
+    return render(request,'accounts/notifications.html',context)
+
 
 def settings(request):
-    return redirect('login')
+    context = {
+        'profile' :getLoggecUser(request.user.id)
+    }
+    return render(request,'accounts/settings.html',context)
 
 def profile(request,user_id):
     if request.user.is_authenticated:
@@ -99,11 +106,32 @@ def check(request):
 
 def search_user(request):
     q = request.GET['q']
-    query = FrontendUsers.objects.filter(first_name__startswith=q).values("first_name")
+    query = FrontendUsers.objects.filter(first_name__startswith=q).values("first_name","id","avatar")
     print(query)
     result = {
         'result':list(query)
     }
 
     return JsonResponse(result)
+
+def searchPage(request): 
+    context = {'profile' : getLoggecUser(request.user.id) }
+
+    userName = request.GET.get('search-user')
+
+    users = FrontendUsers.objects.filter(first_name__contains = userName)
+
+    for x in users:
+        try:
+            Followers.objects.get(follower_id = request.user.id, following_id = x.id)
+            x.is_followed = "True"
+        except Exception:
+            x.is_followed = "False"
+            continue
+    context.update({'users' : users})
+
+    return render(request,'search.html',context)
+
+def getLoggecUser(userid):
+    return FrontendUsers.objects.get(id = userid)
 

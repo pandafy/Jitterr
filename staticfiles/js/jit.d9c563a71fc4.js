@@ -6,6 +6,7 @@ $(document).ready(function(){
         if ($('textarea').val() != '')
         {
          $('div.actions').addClass('editing');
+         $('.btn.new-post.submit').attr("disabled","false")
 
         }
         else   

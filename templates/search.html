@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load humanize %}
+{% block content %}
+
+{% include 'base/partials/_topbar.html' %}
+<main>
+<div class="view feed">
+        {% include 'base/partials/_sidenav.html' %}
+        
+        <div class="main-col">
+            {% if users %}
+              {% for user in users %}
+                <div class="profile-card module">
+                <div class="profile-card-header">
+                    <a href="{% url 'profile' user.id %}" class="avatar-container ">
+                    <img src="{{ user.avatar.url}}" class="avatar ">
+                    </a>
+                    
+                    <div class="name">
+                    <a href="{% url 'profile' user.id %}" class="name">
+                
+                    {{user.first_name}} {{user.last_name}}</a>
+                    </div>
+                  {% if user.id != profile.id %}
+                    <a id="follow-btn" value="{{user.id}}" class="btn follow-btn">
+                    
+                    {%if user.is_followed == "True" %}
+                        Following
+                    {% else %}
+                        Follow
+                    {% endif %}
+                    </a>
+                  {% endif %}
+                </div>
+                <div class="bio"> {{ user.bio }} </div>
+                
+                </div>
+              {% endfor %}
+            {% else %}
+                <p>No such user found</p>
+            {% endif %}
+
+        </div>
+</main>
+{% endblock %}

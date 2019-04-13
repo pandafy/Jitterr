@@ -11,22 +11,23 @@ def jit(request,jit_id):
         jit = allJits.get(id = jit_id)
         context = {
                 'profile' : FrontendUsers.objects.get(username = request.user.username),
-                'focus':jit,
             }
         if (jit.is_reply == True):
             try:
                 parent = Jit_Comment.objects.get(comment_id_id = jit.id)
                 context.update({'parent' : parent})
+                context.update({'focus': jit})
                 children = Jit_Comment.objects.filter(parent_id_id = parent.parent_id_id).exclude(comment_id_id =jit.id)
                 context.update({'children' : children})
             except Exception as e :
                 print(e)
+        else:
+            context.update({'parent' : jit})
 
-            
-
-
-
-           
+            children = Jit_Comment.objects.filter(parent_id_id = jit_id)
+  
+            context.update({'children' : children})
+                
 
     
     return render(request,'jits.html',context)

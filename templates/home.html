@@ -18,7 +18,7 @@
               {% csrf_token %}
                 <div class="inputs">
                     <a href="{% url 'profile'}" class="avatar-container small">
-                    <img src="{{ request.user.avatar.url }}" class="avatar small">
+                    <img src="{{ profile.avatar.url }}" class="avatar small">
                     </a>
 
                     <textarea name ="value" placeholder="Write a post" style="border-color: hsla(208, 97%, 75%, 1); height: 35px;"></textarea>
@@ -85,9 +85,9 @@
       </div>
     </div>
     </div>-->
-      <button class="show-posts-btn load-more">
+    <!--  <button class="show-posts-btn load-more">
             Load more posts
-          </button>
+          </button>-->
     </div>
       </div>
       {% else %}

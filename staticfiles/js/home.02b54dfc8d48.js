@@ -36,7 +36,29 @@ $(document).ready(function(){
 
     var fakedata = ['test1','test2','test3','mohit','ietsanders'];
 
-
+$(".search-bar").autocomplete({
+    appendTo: "#results",
+	source : function(request,response){
+        $.ajax({
+            type : "GET",
+            url : 'search/user/result',
+            data : {
+                q : request.term,
+            },
+            success:function(data){
+                console.log(data)
+                arr = []
+                for(var i =0; i < data.length;++i)
+                {
+                    arr.append(data[String(i).first_name])
+                }
+                console.log(arr)
+                return arr
+            }
+        })
+    } 
+	
+});
 
 
     let logged_user = $('input[name="user_id_js"]')

@@ -11,7 +11,7 @@
       <div class="sidebar-col">
         
         <div class="module">
-          <strong>Fritter build 2018.06.14</strong>
+          <strong>Jitter build 2019.04</strong>
         </div>
         
       </div>
@@ -26,10 +26,10 @@
         {% csrf_token %}
         <label for="avatar">Avatar</label>
         <div title="Update your avatar" class="avatar-container">
-          <input name="avatar" type="file" accept="image/*" class="avatar-input">
+          <input id="upload-avatar" name="avatar" type="file" accept="image/*" class="avatar-input">
 
           <span class="avatar editor empty">+</span>
-          <img src="" id="profile-img-tag" width="200px" />
+          <img src="" id="profile-img-tag" width="200px" >
 
         </div>
 
@@ -54,6 +54,7 @@
       </form>
     </div>
         </div>
+      <script  src="{% static 'js/signup.js' %}"></script>
 <!--
         <div class="settings-view">
           <div>
@@ -141,7 +142,7 @@
       <style>body{--theme-color-hover: hsla(208, 97%, 99%, 1)}</style>
       <input id="profile-url" type="text" value="">
     </div>
-  <script src="{% static 'js/login.js' %}"></script>
+<!--  <script src="{% static 'js/login.js' %}"></script>-->
   
 
 {% endblock %}

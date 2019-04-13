@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import FrontendUsers
 from django.contrib import messages, auth
-from .models import FrontendUsers
+from .models import FrontendUsers,Followers
 from django.core.files.storage import FileSystemStorage
 
 
@@ -37,11 +37,11 @@ def signup(request):
             else:
                 createdUser = FrontendUsers.objects.create_user(first_name = first_name,last_name= last_name,  username = username, bio = bio,password = password1, avatar = avatar)
                 createdUser.save()
+                follow = Followers.objects.create(follower_id= createdUser.id, following_id = createdUser.id)
                 return redirect('signin')
         else:
             messages.error(request,'Passwords do not match ')
-    else:
-        messages.error(request,'Image not uploaded.')
+   
     return render(request,'accounts/signup.html')
 
 def signin(request):

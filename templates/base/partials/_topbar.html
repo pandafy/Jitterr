@@ -1,19 +1,39 @@
 {% load static %}
 <header>
     <nav>
-        <a href="{% url 'feed' %}" class="nav-item active">
+        <a href="{% url 'feed' %}" 
+            {%if '/' == request.path %}
+                class="nav-item active"
+            {% else %}
+                class="nav-item"
+            {% endif %}
+
+         >
             <span class="icon"><svg width="12" height="12" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#home-icon-svg"></use></svg></span>
             <span class="label">Home</span>
         </a>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'notifications' %}" class="nav-item ">
+        <a href="{% url 'notifications' %}"
+            {%if 'notifications' in request.path %}
+                 class="nav-item active"
+            {% else %}
+                class="nav-item"
+            {% endif %}
+         >
             <span class="icon settings"><svg width="16" height="16" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#error-icon-svg"></use></svg></span>
             <span class="label">Notifications</span>
             
         </a>
 
-        <a href="{% url 'settings' %}" class="nav-item ">
+        <a href="{% url 'settings' %}" 
+            {%if 'settings' in request.path %}
+                class="nav-item active"
+            {% else %}
+                class="nav-item"
+            {% endif %}
+        
+        >
             <span class="icon settings"><svg width="48" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#settings-icon-svg"></use></svg></span>
             <span class="label">Settings</span>
         </a>
