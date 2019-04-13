@@ -1,3 +1,14 @@
+i.fas.fa-heart{
+  color: crimson;
+}
+
+i.far.fa-heart{
+  color: #999;
+    font-weight: 50;
+}
+
+
+
 .ui-state-focus {
   background : var(--theme-color) !important
 
@@ -694,9 +705,7 @@ button {
   fill: crimson;
   stroke: crimson;
 }
-.post-actions .vote-icon.vote-animation .heart {
-  animation: puff-out-center 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) both;
-}
+
 .post-actions .icon {
   cursor: pointer;
   width: 14.5px;

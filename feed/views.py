@@ -77,7 +77,7 @@ def profile(request,user_id):
         if not profile:
             profile = get_object_or_404(FrontendUsers, id = request.user.id)
         is_followed = str(Followers.objects.filter(follower_id = user_id, following_id = request.user.id ).exists())
-        jits = Jit.objects.all().filter(author = user_id).order_by('date')
+        jits = Jit.objects.all().filter(author = user_id).order_by('-date')
         posts = jits.count()
         context = {
             'jits' : jits,
@@ -94,13 +94,18 @@ def check(request):
 
 
     boolean = str(Jit_Likedby.objects.filter(user_id_id = userid, jit_id_id = jitid).exists())
+    count = Jit_Likedby.objects.filter(jit_id_id = jitid).count()
     print(boolean)
    # if boolean == True:
    #     result = 'True'
    # else:
    #     result = 'False'
 
-    context = { 'liked' : boolean}
+    context = {
+        'liked' : boolean,
+        'count' : count
+        
+    }
 
     return JsonResponse(context)
 

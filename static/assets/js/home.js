@@ -5,22 +5,29 @@ function check_if_liked(){
         var jitid = $(this).attr('value')
         $.ajax({
             type : 'GET',
-            url : 'check_like',
+            url : window.location.origin + '/check_like',
             data : {
                 user_id : userid,
                 jit_id : jitid,
             },
             success : function(liked){
-                console.log(liked['liked'])
                 
                 if(liked['liked'] == 'True')
                 {
-                    console.log('sdfdhkjhkjhss')
-                    element.addClass('voted');
-                    element.children('span.vote-icon').children('span.vote-icon').addClass('voted')
-                    element.children('span.vote-icon').addClass('voted');
+                    element.children('span.vote-icon').children('i').removeClass('far')   
+                    element.children('span.vote-icon').children('i').addClass('fas') 
                 }
-                console.log('post')
+                else
+                {
+                    element.children('span.vote-icon').children('i').removeClass('fas')   
+                    element.children('span.vote-icon').children('i').addClass('far') 
+                }
+
+                if(liked['count']==0)
+                    element.children('span.count').html('')
+                else
+                    element.children('span.count').html(liked['count']) 
+
             }
 
         })
@@ -55,20 +62,26 @@ $(document).ready(function(){
       });
 
     
-    $('.action.vote').click(function(){
+    $('#new-post-btn-top').click(function(){
+        if(window.location.pathname == '/')
+            $('textarea').focus()
+        else{
+            $('form.new-post-form').slideDown('slow');
+        }
+    })
+
+
+    $('div.action.vote').click(function(){
         
-        $(this).toggleClass('voted');
-        $(this).children('span.vote-icon').toggleClass('voted');
+        $(this).children('span.vote-icon').children('i').toggleClass('fas')   
+        $(this).children('span.vote-icon').children('i').toggleClass('far')        
+     
         
-        
-        $(this).children('form').submit(function(e){e.preventDefault()})
         var jitid = $(this).attr('value');
         var userid = $('input[name="user_id_js"]').val();
-        console.log(userid)
-        var like_count = $(this).children().children('form').children('span.count')
-        var csrftToken = $(this).children().children('form').children('input').val()
+        var like_count = $(this).children('span.count')
 
-        let link = 'jits/liked'
+        let link = window.location.origin + '/jits/liked'
         $.ajax({
             type : "GET",
             url : link, //updates

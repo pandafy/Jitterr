@@ -13,7 +13,4 @@ $(document).ready(function(){
         $(this).parent('div.inputs').parent().children().children('span.char-count').html($('textarea').val().length)
     });
   
-    $('new-post').click(function(){
-        $('textarea').focus();
-    })
 });
